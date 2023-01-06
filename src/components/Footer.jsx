@@ -4,7 +4,7 @@ import { AiOutlineLinkedin } from "react-icons/ai";
 import { TbBrandGmail } from "react-icons/tb";
 import { ImHtmlFive } from "react-icons/im";
 
-
+import {useRef} from 'react'
 function Footer() {
     let sizeIcon = 0;
     if (window.innerWidth <= 500) {
@@ -12,8 +12,12 @@ function Footer() {
     } else {
         sizeIcon = 26;
     }
+    
+
+    
+    
     return (
-        <div className="footer bg-slate-800 dark:bg-slate-900 dark:text-slate-800 text-slate-300 absolute bottom-0 min-w-full h-12 flex  items-center justify-between px-5 lg:px-10 xl:px-14 overflow-x-hidden animate-show bg-no-repeat bg-center lg:bg-left-top">
+        <div className="footer bg-slate-800 dark:bg-slate-900 dark:text-slate-800 text-slate-300 min-w-full h-12 flex  items-center justify-between px-5 lg:px-10 xl:px-14 overflow-x-hidden animate-show bg-no-repeat bg-center lg:bg-left-top">
             <div className="flex justify-center items-center gap-8">
                 <a
                     href="https://luisjimenez19.github.io/desafios-frontend-mentor/"

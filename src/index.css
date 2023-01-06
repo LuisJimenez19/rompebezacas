@@ -8,10 +8,19 @@
     background-image: url("./assets/bgGradient.avif");
 }
 
-/* .body:hover{
-    background-position: left;
-} */
+.body{
+    /* display: flex !important;
+    flex-direction: column !important;
+    min-height: 100% !important; */
+    padding-bottom: 60px;
+}
 
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: calc(50px + env(safe-area-inset-bottom));
+}
 
 
 
@@ -118,8 +127,8 @@
 }
 
 
-@media (max-height: 500px) {
+/* @media (max-height: 500px) {
     .footer{
         position: static !important;
     }
-}
+} */
