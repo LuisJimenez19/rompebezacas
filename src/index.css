@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+input{
+    outline: none;
+    border: none;
+}
+
 /* Bg para el body */
 .body,
 .footer {

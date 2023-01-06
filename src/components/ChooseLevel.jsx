@@ -11,7 +11,7 @@ function ChooseLevel() {
 
                 {ctx.level != "" ? (
                     <div className="text-center font-bold text-md md:text-2xl  text-slate-800 dark:text-slate-400 transition">
-                        <p className="mb-3">Nivel dificultad: {ctx.level}</p>
+                       <p className="mb-3">Nivel dificultad: {ctx.level}</p>
                         <BtnStar />
                     </div>
                 ) : (
