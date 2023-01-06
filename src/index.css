@@ -3,50 +3,46 @@
 @tailwind utilities;
 
 /* Bg para el body */
-.body{
+.body,
+.footer {
     background-image: url("./assets/bgGradient.avif");
-    animation: bg-translate 2s infinte alternate !important;
-    transition: all .3s ;
 }
+
 /* .body:hover{
     background-position: left;
 } */
 
-@keyframes bg-translate {
-    0%{
-        background-position: left;
-    }100%{
-        background-position: center;
-    }
-}
+
 
 
 
 /* Muestro el header apenas carga la página, esto se puede agregar al config de tailwind igual que la fuente pero lo voy hacer de esta forma para que no se haga muy extenso el archivo de configuración */
 #header,
-#container-levels{
+#container-levels {
     animation: up-to-down .3s both;
 }
 
 
 
 @keyframes up-to-down {
-    0%{
+    0% {
         opacity: 0;
         transform: translateY(-100%);
-    }100%{
+    }
+
+    100% {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
 /* Botones */
-.btn-star{
+.btn-star {
     animation: zoom .2s both;
     /* transition: all .3s !important; */
     border: none;
     outline: none;
-    
+
 }
 
 
@@ -64,53 +60,66 @@
 
 
 /* container-grid */
-.grid-container{
+.grid-container {
     width: 100%;
     display: grid;
     min-height: 55vh;
 }
 
-#grid-container-3{
-    grid-template-columns: repeat(3,1fr);
-}
-#grid-container-4{
-    grid-template-columns: repeat(4,1fr);
+#grid-container-3 {
+    grid-template-columns: repeat(3, 1fr);
 }
 
-#grid-container-5{
-    grid-template-columns: repeat(5,1fr);
+#grid-container-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+#grid-container-5 {
+    grid-template-columns: repeat(5, 1fr);
 }
 
 
-.token{
+.token {
     backdrop-filter: blur(2px);
     box-shadow: 5px 5px 10px #000;
-   
-    
+
+
 }
 
 /* modalNotice */
-.modal-bg{
+.modal-bg {
     background-color: rgba(255, 255, 255, 0.181);
     backdrop-filter: blur(10px);
 }
 
-.modal{
+.modal {
     animation: show-modal 3s both;
     border-radius: 20px;
-  
+
 }
 
 @keyframes show-modal {
-    0%{
+    0% {
         transform: scale(0);
         opacity: 0;
-    }50%{
+    }
+
+    50% {
         transform: scale(1);
         opacity: 1;
-    }100%{
-        
+    }
+
+    100% {
+
         transform: scale(5);
         opacity: 0;
+        
+    }
+}
+
+
+@media (max-height: 500px) {
+    .footer{
+        position: static !important;
     }
 }

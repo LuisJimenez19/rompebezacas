@@ -1,8 +1,21 @@
 import { MainContext } from "../context/MainContext";
 
-import { useContext } from "react";
+import { useContext, useRef } from "react";
+import siu from "../assets/siu.mp3";
 
 function Token({ value }) {
+    let sound = new Audio(siu);
+
+    function playSound() {
+        sound.play();
+        
+    }
+
+    function stopSound() {
+        sound.pause();
+        sound.currentTime = 0;
+    }
+
     const ctx = useContext(MainContext);
 
     const initialMatrix = JSON.parse(JSON.stringify(ctx.initialMatrix));
@@ -45,7 +58,7 @@ function Token({ value }) {
         } else if (empty[1] === token[1]) {
             /* Si estan en las misma columna */
             /* En la misma columna se verifica que esten a un paso de distancia */
-            return empty[0] - token[0] === 1 || empty[0] - token[0] === -1 ? true : false;
+            return empty[0] - token[0] === 1 || empty[0] - token[0] ===  -1 ? true : false;
         }
 
         return false;
@@ -68,7 +81,9 @@ function Token({ value }) {
         let shufleM = JSON.stringify(shufleMatrix);
 
         // console.log({initialM, shufleM});
+        /* Verifica si gano */
         if (initialM == shufleM) {
+            playSound();
             ctx.setShowModal(true);
             ctx.setWin(true);
         }
