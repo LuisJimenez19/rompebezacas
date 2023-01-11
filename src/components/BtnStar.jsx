@@ -1,9 +1,10 @@
 import { MainContext } from "../context/MainContext";
+import { DBContext } from "../context/DBContext";
 import { useContext, useState } from "react";
 
 function BtnStar() {
     const ctx = useContext(MainContext);
-
+    const DBctx = useContext(DBContext)
     return (
         <button
             onClick={() => {
@@ -23,15 +24,16 @@ function BtnStar() {
                     ctx.setIsStart("Cancel");
                     ctx.setShowModal(true);
                     ctx.setWin(false)
+                    ctx.setDurationGame(ctx.startOfGameTime())
 
                 } else if (ctx.isStart == "Volver") {
 
-                    ctx.handlePlayer("");
+                    DBctx.setView("home")
                     ctx.setLevel("")
 
                 } else if ((ctx.isStart = "Reinciar")) {
-
-                    ctx.handlePlayer("");
+                    /* En este momento yo ya tengo la duracion */
+                    console.log(ctx.durationGame)
                     ctx.setPlaying(false);
                     ctx.setIsStart("Start");
                     ctx.setLevel("");
@@ -50,5 +52,6 @@ function BtnStar() {
         </button>
     );
 }
+
 
 export { BtnStar };

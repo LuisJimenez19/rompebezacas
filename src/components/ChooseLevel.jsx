@@ -1,17 +1,23 @@
 import { MainContext } from "../context/MainContext";
 import { useContext } from "react";
-import {BtnStar} from './BtnStar'
+import { BtnStar } from "./BtnStar";
 
 function ChooseLevel() {
     const ctx = useContext(MainContext);
+    /* Se pregunta si el jugador actual tiene ultima partdia */
+    let lastGame;
+    if (localStorage.getItem(`lastGame-${ctx.player.id}`)) {
+        lastGame = localStorage.getItem(`lastGame-${ctx.player.id}`);
+        lastGame = JSON.parse(lastGame);
+    }
     return (
         <div id="container-levels" className="w-4/5 sm:w-3/4 lg:w-1/3 mx-auto flex items-center justify-around  transition">
             <div className="flex flex-col gap-1 items-center w-full">
-                <p className="font-bold text-xl md:text-3xl  text-slate-800 dark:text-slate-400 transition">{ctx.player}</p>
+                <p className="font-bold text-xl md:text-3xl  text-slate-800 dark:text-slate-400 transition">{ctx.player.data.name}</p>
 
                 {ctx.level != "" ? (
                     <div className="text-center font-bold text-md md:text-2xl  text-slate-800 dark:text-slate-400 transition">
-                       <p className="mb-3">Nivel dificultad: {ctx.level}</p>
+                        <p className="mb-3">Nivel dificultad: {ctx.level}</p>
                         <BtnStar />
                     </div>
                 ) : (
@@ -52,6 +58,26 @@ function ChooseLevel() {
                             </span>
                             {ctx.isStart == "Volver" ? <BtnStar /> : null}
                         </div>
+
+                        <div>
+                            {lastGame == undefined ? (
+                                <dd className="mt-10 animate-upToDown text-2xl font-bold break-words text-blue-600 md:text-3xl">
+                                    <p className="animate-bounce" >Juega tu primera partida</p>
+                                </dd>
+                            ) : (
+                                <div className="mt-5 max-w-xl w-10/12 mx-auto">
+                                    <div className="transition hover:translate-y-2 flex flex-col rounded-lg border dark:border-gray-100 px-2 py-6 text-center border-gray-800">
+                                        <dt className="animate-zoom text-lg font-medium text-gray-500 dark:text-gray-400">
+                                            {" "}
+                                            Ultimo partdia: {lastGame.level}{" "}
+                                        </dt>
+                                        <dd className="animate-upToDown text-2xl font-bold break-words text-blue-600 md:text-3xl">
+                                            <p>{ctx.convertScore(lastGame.durationGame)}</p>
+                                        </dd>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 )}
             </div>
@@ -59,4 +85,6 @@ function ChooseLevel() {
     );
 }
 
+{/* <h1>Ultimo partdia {lastGame.level}</h1>
+<p>{ctx.convertScore(lastGame.durationGame)}</p> */}
 export { ChooseLevel };

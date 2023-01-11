@@ -8,7 +8,6 @@ function Token({ value }) {
 
     function playSound() {
         sound.play();
-        
     }
 
     function stopSound() {
@@ -52,13 +51,13 @@ function Token({ value }) {
         /* Primero se verifica que esten en la misma fila */
         if (empty[0] === token[0]) {
             /*Si estan en la misma fila se verifica que la distancia entre las columnas sea igual 1  */
-            if (empty[1] - token[1] === 1 || empty[1] - token[1] === -1) {
+            if (empty[1] - token[1] === 1 ||  empty[1] - token[1] === -1) {
                 return true;
             }
         } else if (empty[1] === token[1]) {
             /* Si estan en las misma columna */
             /* En la misma columna se verifica que esten a un paso de distancia */
-            return empty[0] - token[0] === 1 || empty[0] - token[0] ===  -1 ? true : false;
+            return empty[0] - token[0] === 1 || empty[0] - token[0] === -1 ? true : false;
         }
 
         return false;
@@ -84,11 +83,14 @@ function Token({ value }) {
         /* Verifica si gano */
         if (initialM == shufleM) {
             playSound();
+            ctx.setDurationGame(ctx.endOfGameTime(ctx.durationGame));
             ctx.setShowModal(true);
             ctx.setWin(true);
+            /* se actualiza con el tiempo de la duracion */
         }
     }
-
+    
+    
     return (
         <>
             {value != "" ? (
@@ -112,3 +114,5 @@ export { Token };
 /* Pienso que es mejor hacer la función que encuentra la posición del token en este componente y la que encuentra la posición del espacio vacio, entonces en el contexto solo deberia crear la función que se encarge de cambiar los valores y setear el estado */
 
 /* hover:text-3xl md:hover:text-4xl lg:hover:text-7xl */
+
+/* SOlo falta actualizar el usuario y su valor, que inicie sesión rapido y debuguear */

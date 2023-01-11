@@ -7,7 +7,7 @@ function ModalNotice() {
     const ctx = useContext(MainContext);
     let msg;
     if (ctx.win) {
-        /* Uso temporizadores para que no se cambien los estados que afectan al contexto mientras se renderiza el modal*/
+        /* Uso temporizadores para que no se cambien los estados que afectan al contexto mientras se renderiza el modal, para evitar esto tengo que usar estados para el componente en vez de usar el contexto*/
         msg = "¡ Felicitaciones !";
         setTimeout(() => {
             ctx.setIsStart("Reiniciar");

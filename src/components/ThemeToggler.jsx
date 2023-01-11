@@ -62,7 +62,7 @@ function ThemeToggler({ setColorIcon, colorIcon }) {
   dark:text-gray-400
   hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4
   focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5
-  border shadow-gray-900 grid place-content-center transition"
+  border shadow-gray-900 grid place-content-center transition hover:scale-105 hover:brightness-125"
         >
             <svg
                 ref={themeToggleDarkIconRef}

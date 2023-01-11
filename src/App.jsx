@@ -1,24 +1,25 @@
+import { render } from "react-dom";
 import { useState, useContext, useEffect } from "react";
+/* components */
 import { Header } from "./components/Header";
 import { Banner } from "./components/Banner";
 import { Login } from "./components/Login";
 import { Register } from "./components/Register";
+import {Home} from './components/Home'
 import { BtnHome } from "./components/BtnHome";
+import {ChooseLevel} from './components/ChooseLevel'
 import { Board } from "./components/Board";
 import { ModalNotice } from "./components/ModalNotice";
+import {Alert} from './components/Alert'
 import { Footer } from "./components/Footer";
-
+/* context */
 import { MainContext } from "./context/MainContext";
+import {DBContext} from './context/DBContext'
 
 function App() {
+
     const ctx = useContext(MainContext);
-
-    /* Estado auxiliar para ver el comportamiento de la app */
-    const [aux, setAux] = useState(undefined);
-
-    useEffect(() => {
-        setAux("");
-    }, []);
+    const DBctx = useContext(DBContext)
 
     if (ctx.showModal == true) {
         setTimeout(() => {
@@ -27,67 +28,30 @@ function App() {
     }
 
     /* Esto es lo que simularia las rutas mi rey ya que ni puta idea, osea es como se me ocurre hacerlo con mis conocimientos actuales de lo que estudiado como tal y de lo que he aprendido en las "pasantias con el senior" */
-    function handleClick(e) {
+    function chooseView(e) {
         console.log(e.target.firstChild.data);
         let value = e.target.firstChild.data;
-        setAux(value.toLowerCase());
+        DBctx.setView(value.toLowerCase())        
     }
 
-    function renderComponentRuta(ruta) {
+    function renderView(vw) {
         let component;
-        if (ruta == "") component = <Banner handleClick={handleClick} />;
-        else if (ruta == "login") component = <Login handleClick={handleClick} />;
-        else if (ruta == "register") component = <Register handleClick={handleClick} />;
+        if (vw == "init") component = <Banner chooseView={chooseView} />;
+        else if (vw == "login") component = <Login chooseView={chooseView} />;
+        else if (vw == "register") component = <Register chooseView={chooseView} />;
+        else if (vw == "home") component = <Home chooseView={chooseView} />;
+        else if (vw == "chooseLevel") component = <ChooseLevel chooseView={chooseView} />;
         return component;
     }
-    let component = renderComponentRuta(aux);
-    // <div>
-    //     if (aux == "") {
-    //         return (
-    //             <div className="body min-w-full min-h-screen antialiased text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900 transition bg-cover bg-no-repeat bg-center lg:bg-left-top animate-show">
-    //                 <Header />
-    //                 {/* Esto se va a ir mostrando dependiendo de los estados */}
-    //                 <Banner /* aux={aux} setAux={setAux} */ handleClick={handleClick} />
-    //                 <Board />
-    //                 {ctx.showModal == true ? <ModalNotice /> : null}
-    //                 <Footer />
-    //             </div>
-    //         );
-    //     } else if (aux == "login") {
-    //         return (
-    //             <div className="body min-w-full min-h-screen antialiased text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900 transition bg-cover bg-no-repeat bg-center lg:bg-left-top animate-show">
-    //                 <Header />
-    //                 {/* Esto se va a ir mostrando dependiendo de los estados */}
-    //                 {/* <Banner /> */}
-    //                 <Login handleClick={handleClick} />
-    //                 {/* <Register /> */}
-    //                 <Board />
-    //                 {ctx.showModal == true ? <ModalNotice /> : null}
-    //                 <Footer />
-    //             </div>
-    //         );
-    //     } else if (aux == "register") {
-    //         return (
-    //             <div className="body min-w-full min-h-screen antialiased text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900 transition bg-cover bg-no-repeat bg-center lg:bg-left-top animate-show">
-    //                 <Header />
-    //                 {/* Esto se va a ir mostrando dependiendo de los estados */}
-    //                 {/* <Banner /> */}
-    //                 {/* <Login /> */}
-    //                 <Register handleClick={handleClick} />
-    //                 <Board />
-    //                 {ctx.showModal == true ? <ModalNotice /> : null}
-    //                 <Footer />
-    //             </div>
-    //         );
-    //     }
-    // </div>
+    let component = renderView(DBctx.view);
     return (
-        <div className="body min-w-full min-h-screen antialiased text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900 transition bg-cover bg-no-repeat bg-center lg:bg-left-top animate-show">
+        <div className="body min-h-screen antialiased text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900 transition bg-cover bg-no-repeat bg-center lg:bg-left-top animate-show relative">
             <Header />
             {/* Esto se va a ir mostrando dependiendo de los estados */}
             {component}
             <Board />
             {ctx.showModal == true ? <ModalNotice /> : null}
+            <Alert/>
             <Footer />
             {/* {aux != "" ? <BtnHome /> : null} */}
         </div>

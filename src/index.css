@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-input{
+
+input {
     outline: none;
     border: none;
 }
@@ -13,12 +14,27 @@ input{
     background-image: url("./assets/bgGradient.avif");
 }
 
-.body{
+.body {
     /* display: flex !important;
     flex-direction: column !important;
     min-height: 100% !important; */
     padding-bottom: 60px;
+    /* transition: backgorund 1s linear !important; */
 }
+
+
+@keyframes animate-bg {
+    0% {
+        background-size: 300%
+    }
+
+    100% {
+        background-size: 1000%
+    }
+}
+
+
+
 
 .footer {
     position: fixed;
@@ -127,9 +143,63 @@ input{
 
         transform: scale(5);
         opacity: 0;
-        
+
     }
 }
+
+
+/* ----------table users------------- */
+#table-bg {
+    background-color: rgba(255, 255, 255, .1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 20px 30px rgba(21, 21, 21, 0.308);
+    border-radius: 20px 2px 0px 20px;
+
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+
+}
+
+
+
+#table-users {
+    /* background-color: rgba(255, 255, 255, 0.233);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 20px #ccc; */
+    /*  background-color: rgba(255, 255, 255, .1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 20px 30px rgba(21, 21, 21, 0.308);
+    border-radius: 1px 2px 20px 20px; */
+
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+
+/* esilizar scroll bar */
+/* Estilo para la barra de desplazamiento */
+::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+}
+
+/* Estilo para la "thumb" de la barra de desplazamiento */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #a5a5a51f;
+    transition: .2s;
+}
+::-webkit-scrollbar-thumb:hover{
+    border-radius: 10px;
+    background-color: #a5a5a5;
+
+}
+
+
 
 
 /* @media (max-height: 500px) {
@@ -137,3 +207,7 @@ input{
         position: static !important;
     }
 } */
+
+
+/* animation for alerts */
+
